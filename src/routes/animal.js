@@ -7,11 +7,9 @@ router.post("/", async (req, res, next) => {
     try{
         const animal = Animal(req.body)
         
-        const savedAnimal = await animal.save();
+        const savedAnimal = await animal.save();        
     
-        console.log(savedAnimal)
-    
-        res.send(savedAnimal);
+        res.status(200).send(savedAnimal);
 
     }catch(error){
         next(error)
@@ -22,11 +20,9 @@ router.put("/:id", async (req, res, next) => {
     try{
         const { id } = req.params;        
         await Animal.findByIdAndUpdate(id, req.body);
-        const ani = await Animal.findById(id).lean();
+        const animals = await Animal.find().lean();
         
-        console.log(ani)
-    
-        res.send(ani);
+        res.status(200).send(animals);
 
     }catch(error){
         next(error)
@@ -38,7 +34,7 @@ router.delete("/:id", async (req, res, next) => {
         const { id } = req.params;        
         await Animal.findByIdAndDelete(id);        
     
-        res.send('deleted');
+        res.status(200).send('deleted');
 
     }catch(error){
         next(error)

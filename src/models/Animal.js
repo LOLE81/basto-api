@@ -5,24 +5,25 @@ const animalSchema = new Schema(
   {
     id_senasa: {
       type: String,
-      required: true,
+      required: [true, 'Por favor ingrese el ID SENASA'],
+      unique: true,
       validate: [
         validate({
           validator: "isLength",
           arguments: [16, 16],
-          message: "ID SENASA should be 16 characters",
+          message: "ID SENASA debe contener 16 characters",
         }),
         validate({
           validator: "isAlphanumeric",
           passIfEmpty: true,
-          message: "ID SENASA should be alphanumeric",
+          message: "ID SENASA debe ser un alfanumérico",
         }),
       ],
     },
     type: {
       type: String,
       required: true,
-      enum: ["Novillo", "Toro", "Vaquillona"]
+      enum: {values: ["Novillo", "Toro", "Vaquillona"], message: '{VALUE} no es una opción válida'}
     },
     weight: {
       type: Number,
@@ -36,7 +37,7 @@ const animalSchema = new Schema(
     device: {
       type: String,
       required: true,
-      enum: ["COLLAR", "CARAVANA"]
+      enum: {values: ["COLLAR", "CARAVANA"], message: '{VALUE} no es una opción válida'}
     },
     device_number: {
       type: String,
