@@ -19,11 +19,11 @@ router.post("/", async (req, res, next) => {
 router.put("/:id", async (req, res, next) => {
     try{
         const { id } = req.params;        
-        await Animal.findByIdAndUpdate(id, req.body);
+        await Animal.findByIdAndUpdate(id, req.body, { runValidators: true });
         const animals = await Animal.find().lean();
         
         res.status(200).send(animals);
-
+        
     }catch(error){
         next(error)
     }
@@ -32,9 +32,10 @@ router.put("/:id", async (req, res, next) => {
 router.delete("/:id", async (req, res, next) => {
     try{
         const { id } = req.params;        
-        await Animal.findByIdAndDelete(id);        
+        await Animal.findByIdAndDelete(id);
+        const animals = await Animal.find().lean();
     
-        res.status(200).send('deleted');
+        res.status(200).send(animals);
 
     }catch(error){
         next(error)

@@ -42,6 +42,7 @@ const animalSchema = new Schema(
     device_number: {
       type: String,
       required: true,
+      unique: true,
       validate: [
         validate({
           validator: "isLength",
