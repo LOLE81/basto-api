@@ -66,13 +66,3 @@ const animalSchema = new Schema(
 const Animal = model('Animal', animalSchema);
 
 module.exports = Animal
-
-
-// {
-//     "id_senasa": "12345678asdfghjk",
-//     "type": "Novillo",
-//     "weight": 520,
-//     "cattle_ranch": "Potrero del Oeste",
-//     "device": "COLLAR",
-//     "device_number": "1234asdf"
-// }

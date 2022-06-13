@@ -3,6 +3,6 @@ require("././src/db")
 const { PORT } = process.env;
 
 
-app.listen(PORT || 3000, () => {
+app.listen(PORT || 8000, () => {
     console.log('initialized');
 });
